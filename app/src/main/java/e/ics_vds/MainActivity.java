@@ -29,7 +29,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     final String pubTopic = "ICsVDS/nodemcu", subscriptionTopic = "ICsVDS/app", username = "mwgdyyop", password = "1s4lzSl27zSV";
-    Button btnConnect, btnSend, btnFan;
+    Button btnConnect, btnSend, btnFan, btnStopMsg;
     TextView tvConnStat;
     EditText etMsg;
     public MqttAndroidClient mqttAndroidClient;
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnConnect = findViewById(R.id.btn_connect);
         btnSend = findViewById(R.id.btn_send);
         btnFan = findViewById(R.id.btn_fan);
+        btnStopMsg = findViewById(R.id.btn_stopMsg);
         etMsg = findViewById(R.id.et_msg);
         tvConnStat = findViewById(R.id.tv_connStat);
         pd = new ProgressDialog(this);
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnConnect.setOnClickListener(this);
         btnSend.setOnClickListener(this);
         btnFan.setOnClickListener(this);
+        btnStopMsg.setOnClickListener(this);
     }
 
     @Override
@@ -98,6 +100,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 sendMessage("1", TARGET_FAN);
             }
+        }
+        if(view.getId() == R.id.btn_stopMsg){
+            if(!internetIsConnected() || !isMqttConnected){
+                Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            sendMessage("3", TARGET_LCD);
         }
     }
 

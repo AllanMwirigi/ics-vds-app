@@ -33,6 +33,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/et_msg"
+        android:id="@+id/btn_stopMsg"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/btn_send"
+        android:text="Stop Message"
+        android:layout_marginLeft="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_fan"
         android:layout_below="@id/btn_send"
         android:layout_marginTop="40dp"
